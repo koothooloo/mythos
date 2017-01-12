@@ -1,24 +1,19 @@
-name := """reactive-stocks"""
+name := """fileupload"""
 
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
-// scalaz-bintray resolver needed for specs2 library
-resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
-
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+libraryDependencies += ws
 libraryDependencies ++= Seq(
-  ws, // Play's web services module
-  specs2 % Test,
-  "org.specs2" %% "specs2-matcher-extra" % "3.6" % Test,
-  "org.easytesting" % "fest-assert" % "1.4" % Test,
-  "com.typesafe.akka" %% "akka-testkit" % "2.3.11" % Test,
-  "org.webjars" % "bootstrap" % "2.3.2",
-  "org.webjars" % "flot" % "0.8.0"
+  "mysql" % "mysql-connector-java" % "5.1.34",
+  "com.github.aselab" %% "scala-activerecord" % "0.3.2",
+  "com.github.aselab" %% "scala-activerecord-play2" % "0.3.2"
 )
+libraryDependencies += "commons-io" % "commons-io" % "2.5"
 
-routesGenerator := InjectedRoutesGenerator
 
-fork in run := true
+resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
